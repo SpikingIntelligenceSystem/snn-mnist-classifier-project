@@ -46,19 +46,6 @@ optimizer = torch.optim.Adam(
 # Define network model, loss, and optimizer model
 
 
-def spike_encoding(images, num_steps, device):
-    images = images.to(device)
-    # Moves images to device
-    batch = images.size(0)
-    flatten = images.view(batch, -1)
-    # Flattens image
-    spike = spikegen.rate(flatten, num_steps)
-    # Encode to spikes
-    return spike
-# Encoding for LIF-SNN network, unused in this file.
-# Transfer to LIF file once done.
-
-
 def train_SNN(model, training_loader, device, num_epochs):
     for epoch in range(num_epochs):
         iteration = 0
