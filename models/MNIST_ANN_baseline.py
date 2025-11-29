@@ -3,7 +3,7 @@ import torch.nn as nn
 
 class MNIST_ANN(nn.Module):
 
-    def __init__(self, beta=0.9, spike_grad=None):
+    def __init__(self):
         super().__init__()
         neuron_inputs = 784  # 28*28
         neuron_hidden_1 = 256
