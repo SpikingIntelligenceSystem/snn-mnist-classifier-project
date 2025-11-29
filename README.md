@@ -2,6 +2,7 @@
 
 This repository contains a personal project exploring **spiking neural networks (SNNs)** using [PyTorch](https://pytorch.org/) and [snnTorch](https://snntorch.readthedocs.io/).  
 The goal is to build and train a simple SNN to classify handwritten digits from the **MNIST** dataset and compare its behavior to a standard artificial neural network (ANN) baseline.
+I will also include a single step SNN as another baseline comparison that has relatively similar accuracy to the ANN baseline.
 
 This project is part of my self-study in **neuromorphic computing, spiking neural networks, and machine learning**.
 
@@ -42,10 +43,12 @@ Planned structure for this project (subject to change):
 snn-mnist-classifier-project/
 ├── models/
 │   ├── snn_model.py          # SNN architecture definitions
+│   ├── single_step_snn_baseline.py    # single step SNN model for comparison
 │   └── ann_baseline.py       # ANN model for comparison
 ├── notebooks/
 │   └── experimentation.ipynb     # experiments and visualizations
 ├── train_snn.py              # main SNN training script
+├── train_single_step_baseline.py    # single step SNN baseline training script
 ├── train_ann_baseline.py     # ANN baseline training script
 ├── requirements.txt          # Python dependencies
 └── README.md                 # project documentation
@@ -68,15 +71,18 @@ Training scripts are currently under development.
 
 ## Results
 ```markdown
-No results yet - will be listed here when complete.
-
 Planned metrics to report:
 
 - SNN accuracy on the MNIST test set
 - Accuracy of an ANN baseline for comparison
 - Training/validation loss and accuracy curves
 ```
+### Baseline Results-WIP
 
+| Model              | Timesteps | Test Accuracy |
+|--------------------|-----------|---------------|
+| ANN (ReLU MLP)     | 1         | 98.0%         |
+| 1-step SNN (Leaky) | 1         | 97–98%        |
 ---
 
 ## License
