@@ -5,6 +5,7 @@ from torchvision import datasets, transforms
 from torch.utils.data import DataLoader
 import random
 import numpy as np
+# Establish imports
 
 torch.manual_seed(0)
 random.seed(0)
