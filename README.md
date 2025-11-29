@@ -1,7 +1,7 @@
 # snn-mnist-classifier-project
 
 This repository contains a personal project exploring **spiking neural networks (SNNs)** using [PyTorch](https://pytorch.org/) and [snnTorch](https://snntorch.readthedocs.io/).  
-The goal is to build and train a simple SNN to classify handwritten digits from the **MNIST** dataset and compare its behavior to a standard feedforward neural network (ANN) baseline.
+The goal is to build and train a simple SNN to classify handwritten digits from the **MNIST** dataset and compare its behavior to a standard artificial neural network (ANN) baseline.
 
 This project is part of my self-study in **neuromorphic computing, spiking neural networks, and machine learning**.
 
