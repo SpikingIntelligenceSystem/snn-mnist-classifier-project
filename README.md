@@ -47,9 +47,10 @@ snn-mnist-classifier-project/
 │   └── ann_baseline.py       # ANN model for comparison
 ├── notebooks/
 │   └── experimentation.ipynb     # experiments and visualizations
-├── train_snn.py              # main SNN training script
-├── train_single_step_baseline.py    # single step SNN baseline training script
-├── train_ann_baseline.py     # ANN baseline training script
+├── scripts/
+│   ├── train_snn.py              # main SNN training script
+│   ├── train_single_step_baseline.py    # single step SNN baseline training script
+│   └── train_ann_baseline.py     # ANN baseline training script
 ├── requirements.txt          # Python dependencies
 └── README.md                 # project documentation
 ```
