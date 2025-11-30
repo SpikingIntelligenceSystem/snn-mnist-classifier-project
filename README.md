@@ -144,8 +144,10 @@ snn-mnist-classifier-project/
 │   ├── snn_model.py          # SNN architecture definitions
 │   ├── mnist_single_step_snn_baseline.py    # single step SNN model for comparison
 │   └── mnist_ann_baseline.py       # ANN model for comparison
-├── data/
-│   └── result_graphs.ipynb     # model comparison graphs
+├── plotting/
+│   ├── accuracy_bar.py    # accuracy bar chart script, compares all models
+│   ├── training_curve.py    # prints loss history for training run, single model
+│   └── spike_raster.py    # generates a spike raster plot for temporal SNN
 ├── scripts/
 │   ├── train_snn.py              # main SNN training script
 │   ├── train_single_step_baseline.py    # single step SNN baseline training script
