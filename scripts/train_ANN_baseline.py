@@ -13,10 +13,18 @@ random.seed(0)
 np.random.seed(0)
 # For higher levels of consistency
 
+"""
+Train + evaluate the ANN baseline.
+
+Run from repo root:
+    python -m scripts.train_ANN_baseline
+"""
+
 batch_size = 128
 num_epochs = 10
 learn_rate = 1e-3
 # Set training parameters
+
 device = torch.device(
     "cuda") if torch.cuda.is_available() else torch.device("cpu")
 # Attempts to use CUDA if available, if unavailable uses CPU

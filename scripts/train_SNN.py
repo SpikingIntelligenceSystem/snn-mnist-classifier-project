@@ -6,11 +6,22 @@ from torch.utils.data import DataLoader
 from models.SNN_model import MNIST_SNN
 # Imports
 
+"""
+Train + evaluate the full SNN.
+
+Run from repo root:
+    python -m scripts.train_SNN
+"""
+
 batch_size = 128
 num_steps = 100
 num_epochs = 10
 learn_rate = 1e-4
 # Set training parameters
+
+device = torch.device(
+    "cuda") if torch.cuda.is_available() else torch.device("cpu")
+# Attempts to use CUDA if available, if unavailable uses CPU
 
 
 def spike_encoding(images, num_steps, device):
@@ -23,10 +34,6 @@ def spike_encoding(images, num_steps, device):
     # Encode to spikes
     return spike
 
-
-device = torch.device(
-    "cuda") if torch.cuda.is_available() else torch.device("cpu")
-# Attempts to use CUDA if available, if unavailable uses CPU
 
 transform = transforms.Compose([
     transforms.ToTensor(),

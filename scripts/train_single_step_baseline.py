@@ -13,6 +13,13 @@ random.seed(0)
 np.random.seed(0)
 # For higher levels of consistency
 
+"""
+Train + evaluate the single step SNN baseline.
+
+Run from repo root:
+    python -m scripts.train_single_step_baseline
+"""
+
 batch_size = 128
 num_epochs = 10
 learn_rate = 1e-3
