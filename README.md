@@ -144,8 +144,8 @@ snn-mnist-classifier-project/
 │   ├── snn_model.py          # SNN architecture definitions
 │   ├── mnist_single_step_snn_baseline.py    # single step SNN model for comparison
 │   └── mnist_ann_baseline.py       # ANN model for comparison
-├── notebooks/
-│   └── experimentation.ipynb     # experiments and visualizations
+├── data/
+│   └── result_graphs.ipynb     # model comparison graphs
 ├── scripts/
 │   ├── train_snn.py              # main SNN training script
 │   ├── train_single_step_baseline.py    # single step SNN baseline training script
