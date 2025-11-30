@@ -200,7 +200,7 @@ pip install -r requirements.txt
 | Model         | Timesteps | Epochs    | Test Accuracy | Model Type          |
 |---------------|-----------|-----------|---------------|---------------------|
 | ANN           | 1         | 10        | 98.0%         | ReLU ANN            |
-| 1-step SNN    | 1         | 10        | 97–98%        | LIF SNN             |
+| 1-step SNN    | 1         | 10        | 97%           | LIF SNN             |
 | SNN Model     | 100       | 10        | 97%           | LIF SNN             |
 
 ---

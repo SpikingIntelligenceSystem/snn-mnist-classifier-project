@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 
 # Replace accuracies with your final measured accuracies
 model_names = ["ANN", "1-Step SNN", "SNN (T=100)"]
-accuracies = [0.98, 0.975, 0.972]  # as fractions (0–1)
+accuracies = [0.98, 0.972, 0.972]  # as fractions (0–1)
 
 plt.figure()
 plt.bar(model_names, [a * 100 for a in accuracies])

@@ -6,7 +6,14 @@ from torch.utils.data import DataLoader
 import random
 import numpy as np
 from models.MNIST_single_step_SNN_baseline import MNIST_1STEP_SNN
+from pathlib import Path
+import json
 # Establish imports
+
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+RESULTS_DIR = PROJECT_ROOT / "results"
+RESULTS_DIR.mkdir(exist_ok=True)
+# Establish data results path
 
 torch.manual_seed(0)
 random.seed(0)
@@ -55,6 +62,7 @@ optimizer = torch.optim.Adam(
 
 
 def train_SNN(model, training_loader, device, num_epochs):
+    epoch_loss = []
     for epoch in range(num_epochs):
         iteration = 0
         model.train()
@@ -75,6 +83,9 @@ def train_SNN(model, training_loader, device, num_epochs):
                       f"Batch Loss: {loss_batch.item():.4f}, "
                       f"Mean Loss: {mean_loss:.4f}")
                 # Prints epoch, loss, and iterations after every 50 iterations
+        epoch_mean = sum(loss_total) / len(loss_total)
+        epoch_loss.append(epoch_mean)
+    return epoch_loss   # Returns epoch loss values for plotting
 # Model training script
 
 
@@ -96,10 +107,14 @@ def acc_eval_SNN(model, testing_loader, device):
 # Model overall evaluation script
 
 
+# Engage testing
 if __name__ == "__main__":
-    train_SNN(net, training_loader, device, num_epochs)
+    epoch_loss = train_SNN(net, training_loader, device, num_epochs)
+    loss_path = RESULTS_DIR / "1step_snn_loss.json"
+    with loss_path.open("w") as f:
+        json.dump(epoch_loss, f)
+        # For plotting loss
     acc_eval_SNN(net, testing_loader, device)
-    # Engage testing
     torch.save(net.state_dict(), "mnist_1Step_SNN_baseline.pt")
     print("Single Step SNN Baseline Saved")
     # Save trained Single Step SNN baseline
