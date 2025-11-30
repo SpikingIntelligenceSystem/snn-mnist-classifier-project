@@ -203,6 +203,8 @@ pip install -r requirements.txt
 | 1-step SNN    | 1         | 10        | 97%           | LIF SNN             |
 | SNN Model     | 100       | 10        | 97%           | LIF SNN             |
 
+
+![classification accuracy](results/classification_accuracy.png)
 ---
 
 ### Training Loss Curves
