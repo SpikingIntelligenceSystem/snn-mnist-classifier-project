@@ -113,7 +113,7 @@ For each time step `t`:
 
 A basic Python environment is recommended, but not needed (e.g., virtualenv or venv).
 
-Once `requirements.txt` is complete, dependencies can be installed with:
+Dependencies can be installed with:
 
 ```bash
 pip install -r requirements.txt
