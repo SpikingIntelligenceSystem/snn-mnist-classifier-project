@@ -109,6 +109,25 @@ For each time step `t`:
 
 ---
 
+**Data Flowchart For Temporal SNN**
+```mermaid
+flowchart LR
+  img["MNIST image 28x28"]
+  flat["Flatten to 784"]
+  encode["Rate encoding: spikegen.rate(x, T)"]
+  spikes["Spike train, shape: T x batch x 784"]
+  lif1["Linear(784->256) + LIF"]
+  lif2["Linear(256->128) + LIF"]
+  lif3["Linear(128->10) + LIF"]
+  avg["Average over time: mem_rec.mean(dim=0)"]
+  logits["Class logits, shape: batch x 10"]
+
+  img --> flat --> encode --> spikes
+  spikes --> lif1 --> lif2 --> lif3 --> avg --> logits
+```
+
+---
+
 ## Status
 
 **Comparing models.** 
