@@ -205,6 +205,11 @@ pip install -r requirements.txt
 
 ---
 
+### Graphed Data
+
+![Training loss curves](results/training_loss_curves.png)
+
+---
 ## License
 
 This project is licensed under the terms of the **MIT License**.  
