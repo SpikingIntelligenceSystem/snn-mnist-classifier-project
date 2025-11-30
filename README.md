@@ -109,6 +109,21 @@ For each time step `t`:
 
 ---
 
+## Running the models
+
+From the project root:
+
+```bash
+# Train and evaluate the ANN baseline
+python -m scripts.train_ANN_baseline
+
+# Train and evaluate the single step SNN baseline
+python -m scripts.train_single_step_baseline
+
+# Train and evaluate the SNN model
+python -m scripts.train_SNN
+```
+---
 **Data Flowchart For Temporal SNN**
 ```mermaid
 flowchart LR
