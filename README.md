@@ -111,7 +111,7 @@ For each time step `t`:
 
 ## Setup
 
-A basic Python environment is recommended, but not needed (e.g., virtualenv or venv).
+A dedicated Python virtual environment is optional but recommended (e.g., `python -m venv .venv`).
 
 Dependencies can be installed with:
 
@@ -132,14 +132,14 @@ source .venv/bin/activate      # PowerShell: .venv\Scripts\Activate
 pip install -r requirements.txt
 
 # 3. Train models (run from repo root)
-py -m scripts.train_ANN
+py -m scripts.train_ANN_baseline
 py -m scripts.train_single_step_baseline
 py -m scripts.train_SNN
 
 # 4. Generate result plots
 py -m result_scripts.classification_accuracy
 py -m result_scripts.plot_loss_curves
-py -m result_scripts.spike_raster
+py -m result_scripts.SNN_spike_raster
 ```
 
 ---
@@ -172,13 +172,13 @@ snn-mnist-classifier-project/
 │   ├── mnist_single_step_snn_baseline.py    # single step SNN model for comparison
 │   └── mnist_ann_baseline.py       # ANN model for comparison
 ├── scripts/
-│   ├── train_snn.py              # main SNN training script
+│   ├── train_SNN.py              # main SNN training script
 │   ├── train_single_step_baseline.py    # single step SNN baseline training script
-│   └── train_ann_baseline.py     # ANN baseline training script
+│   └── train_ANN_baseline.py     # ANN baseline training script
 ├── result_scripts/
 │   ├── classification_accuracy.py    # bar graph comparison code
 │   ├── plot_loss_curves.py        # graph of model comparing training loss code
-│   └── snn_spike_raster.py       # raster plot of spikes code
+│   └── SNN_spike_raster.py       # raster plot of spikes code
 ├── results/
 │   ├── classification_accuracy.png    # bar graph of all model accuracies compared
 │   ├── training_loss_curves.png        # cpmarison graph of all model losses
@@ -268,7 +268,7 @@ instead of working with continuous activations at a single time step, the SNN re
 - Adding temporal structure (100-step SNN) makes optimisation harder but allows us to study genuinely spiking behaviour.
 - The combination of all the listed data graphs provide a compact view of how ANNs and SNNs differ in both performance and dynamics.
 
-## Personal Growths
+## Personal Growth
 
 - How to implement LIF-based SNNs in PyTorch using snnTorch
 - How to encode static images as spike trains with rate encoding
