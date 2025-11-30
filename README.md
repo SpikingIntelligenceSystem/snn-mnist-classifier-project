@@ -78,12 +78,13 @@ Planned metrics to report:
 - Accuracy of an ANN baseline for comparison
 - Training/validation loss and accuracy curves
 ```
-### Baseline Results-WIP
+### Accuracy Results
 
-| Model              | Timesteps | Test Accuracy |
-|--------------------|-----------|---------------|
-| ANN (ReLU MLP)     | 1         | 98.0%         |
-| 1-step SNN (Leaky) | 1         | 97–98%        |
+| Model         | Timesteps | Epochs    | Test Accuracy | Notes               |
+|---------------|-----------|-----------|---------------|---------------------|
+| ANN           | 1         | 10        | 98.0%         | ReLU MLP            |
+| 1-step SNN    | 1         | 10        | 97–98%        | LIF, mem readout    |
+| SNN Model     | 100       | 10        | 97%           | LIF, rate encoded   |
 ---
 
 ## License
