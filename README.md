@@ -205,7 +205,7 @@ pip install -r requirements.txt
 
 ---
 
-### Graphed Data
+### Training Loss Curves
 
 ![Training loss curves](results/training_loss_curves.png)
 
