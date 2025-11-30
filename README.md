@@ -109,9 +109,6 @@ For each time step `t`:
 
 ---
 
-## Running the models
-
-From the project root:
 
 ## Quickstart
 
