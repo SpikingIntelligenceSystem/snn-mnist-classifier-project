@@ -109,6 +109,17 @@ For each time step `t`:
 
 ---
 
+## Setup
+
+A basic Python environment is recommended, but not needed (e.g., virtualenv or venv).
+
+Once `requirements.txt` is complete, dependencies can be installed with:
+
+```bash
+pip install -r requirements.txt
+```
+
+---
 
 ## Quickstart
 
@@ -178,17 +189,6 @@ snn-mnist-classifier-project/
 
 ---
 
-## Setup
-
-A basic Python environment is recommended, but not needed (e.g., virtualenv or venv).
-
-Once `requirements.txt` is complete, dependencies can be installed with:
-
-```bash
-pip install -r requirements.txt
-```
-
----
 
 ## Project Results
 
@@ -290,8 +290,8 @@ instead of working with continuous activations at a single time step, the SNN re
 ---
 ## References
 
-- snnTorch tutorials – [(https://snntorch.readthedocs.io/en/latest/tutorials/index.html)]
-- PyTorch documentation – [(https://docs.pytorch.org/tutorials/)]
+- snnTorch tutorials – [https://snntorch.readthedocs.io/en/latest/tutorials/index.html]
+- PyTorch documentation – [https://docs.pytorch.org/tutorials/]
 
 ---
 
