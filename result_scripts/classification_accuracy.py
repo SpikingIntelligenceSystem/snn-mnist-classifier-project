@@ -11,5 +11,5 @@ plt.ylim(90, 100)
 plt.title("MNIST Classification Accuracy")
 
 plt.tight_layout()
-plt.savefig("classification_accuracy.png", dpi=300)
+plt.savefig("results/classification_accuracy.png", dpi=300)
 # plt.show()  # uncomment if running interactively
