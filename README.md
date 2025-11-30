@@ -29,9 +29,89 @@ This project is part of my self-study in **neuromorphic computing, spiking neura
 
 ---
 
+## Model Architectures
+
+This project compares three related models on the MNIST handwritten digit dataset:
+a standard feedforward ANN, a single–step SNN, and a temporal (multi–step) SNN.
+
+### 1. Feedforward ANN Baseline
+
+**Type:** Standard fully connected neural network  
+**Input:** 28×28 grayscale image → flattened to 784-dim vector  
+
+**Layer stack**
+
+- Linear(784 → 256)
+- ReLU
+- Linear(256 → 128)
+- ReLU
+- Linear(128 → 10) → logits (passed to `CrossEntropyLoss`)
+
+**Key details**
+
+- No time dimension — each image is processed in a single forward pass.
+- Optimizer: Adam (lr = 1e-3), batch size = 128, epochs = 10.
+- Serves as the non-spiking baseline for accuracy and training behavior.
+
+---
+
+### 2. Single-Step SNN Baseline
+
+**Type:** LIF-based SNN with a single simulation step  
+**Input:** 28×28 image → flattened to 784-dim vector (no spike encoding)
+
+**Layer stack**
+
+- Linear(784 → 256) → LeakyLIF
+- Linear(256 → 128) → LeakyLIF
+- Linear(128 → 10) → LeakyLIF (with `output=True` to get membrane + spikes)
+
+**Key details**
+
+- Only **one** time step is simulated: the image is passed through the LIF layers once.
+- The final layer’s **membrane potential** is used as the logits for `CrossEntropyLoss`.
+- Same training setup as the ANN (Adam, batch size 128, epochs 10), but with spiking
+  neurons replacing ReLU.
+
+---
+
+### 3. Temporal SNN (Multi-Step SNN)
+
+**Type:** LIF-based SNN with rate-encoded inputs and multiple time steps  
+**Input pipeline**
+
+1. Image: 28×28 → flatten to 784
+2. Rate encoding with `spikegen.rate` to produce a spike train:
+   - Shape: **[T, batch, 784]**, where `T = num_steps` (e.g., 100)
+
+**Layer stack per time step**
+
+For each time step `t`:
+
+- Linear(784 → 256) → LeakyLIF
+- Linear(256 → 128) → LeakyLIF
+- Linear(128 → 10) → LeakyLIF (with `output=True`)
+
+**Readout**
+
+- The network records membrane potentials `mem_rec` over all time steps:
+  - Shape: **[T, batch, 10]**
+- Classification logits are obtained by time-averaging:
+  - `logits = mem_rec.mean(dim=0)` → shape **[batch, 10]**
+- These logits are passed to `CrossEntropyLoss`.
+
+**Training setup**
+
+- Time steps: T = num_steps = 100
+- Optimizer: Adam (lr = 1e-4)
+- Batch size: 128
+- Epochs: 5-10 (10 used for the accuracy comparison results)
+
+---
+
 ## Status
 
-**Work in progress.** 
+**Comparing models.** 
 
 ---
 
@@ -80,11 +160,12 @@ Planned metrics to report:
 ```
 ### Accuracy Results
 
-| Model         | Timesteps | Epochs    | Test Accuracy | Notes               |
+| Model         | Timesteps | Epochs    | Test Accuracy | Model Type          |
 |---------------|-----------|-----------|---------------|---------------------|
-| ANN           | 1         | 10        | 98.0%         | ReLU MLP            |
-| 1-step SNN    | 1         | 10        | 97–98%        | LIF, mem readout    |
-| SNN Model     | 100       | 10        | 97%           | LIF, rate encoded   |
+| ANN           | 1         | 10        | 98.0%         | ReLU ANN            |
+| 1-step SNN    | 1         | 10        | 97–98%        | LIF SNN             |
+| SNN Model     | 100       | 10        | 97%           | LIF SNN             |
+
 ---
 
 ## License
