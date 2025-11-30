@@ -102,7 +102,7 @@ For each time step `t`:
 
 **Training setup**
 
-- Time steps: T = num_steps = 100
+- Time steps: num_steps = 100
 - Optimizer: Adam (lr = 1e-4)
 - Batch size: 128
 - Epochs: 5-10 (10 used for the accuracy comparison results)
