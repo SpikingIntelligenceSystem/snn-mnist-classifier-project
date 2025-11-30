@@ -5,6 +5,7 @@ from torchvision import datasets, transforms
 from torch.utils.data import DataLoader
 import random
 import numpy as np
+from models.MNIST_single_step_SNN_baseline import MNIST_1STEP_SNN
 # Establish imports
 
 torch.manual_seed(0)

@@ -5,6 +5,7 @@ from torchvision import datasets, transforms
 from torch.utils.data import DataLoader
 import random
 import numpy as np
+from models.MNIST_ANN_baseline import MNIST_ANN
 # Establish imports
 
 torch.manual_seed(0)
@@ -25,7 +26,6 @@ transform = transforms.Compose([
     transforms.ToTensor(),
     transforms.Normalize((0.1307,), (0.3081,))
 ])
-
 # Transforms input into readable data for network
 
 training_data = datasets.MNIST(

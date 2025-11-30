@@ -3,6 +3,7 @@ import torch.nn as nn
 from snntorch import spikegen
 from torchvision import datasets, transforms
 from torch.utils.data import DataLoader
+from models.SNN_model import MNIST_SNN
 # Imports
 
 batch_size = 128
@@ -10,6 +11,7 @@ num_steps = 100
 num_epochs = 10
 learn_rate = 1e-4
 # Set training parameters
+
 
 def spike_encoding(images, num_steps, device):
     images = images.to(device)
@@ -20,6 +22,7 @@ def spike_encoding(images, num_steps, device):
     spike = spikegen.rate(flatten, num_steps)
     # Encode to spikes
     return spike
+
 
 device = torch.device(
     "cuda") if torch.cuda.is_available() else torch.device("cpu")
