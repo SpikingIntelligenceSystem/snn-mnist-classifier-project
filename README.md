@@ -133,7 +133,7 @@ py -m result_scripts.spike_raster
 
 ---
 
-**Data Flowchart For Temporal SNN**
+## Data Flowchart For Temporal SNN
 ```mermaid
 flowchart LR
   img["MNIST image 28x28"]
