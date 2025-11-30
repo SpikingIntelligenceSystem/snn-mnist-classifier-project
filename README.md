@@ -212,6 +212,58 @@ pip install -r requirements.txt
 ![Training loss curves](results/training_loss_curves.png)
 
 ---
+
+### SNN Model Spike Raster
+
+![SNN Spike Raster](results/snn_output_spikes.png)
+
+---
+
+## Final Results & Interpretation
+This project compares three models on the MNIST digit classification task:
+
+- **ANN** – standard 3-layer feedforward network with ReLU activations  
+- **Single Step SNN** – LIF spiking network evaluated at a single time step (no explicit temporal dynamics)  
+- **SNN Model** – full LIF spiking network unrolled over 100 time steps with rate-encoded input
+
+### Accuracy comparison
+From the classification accuracy bar plot:
+
+- **ANN** reaches **≈98%** test accuracy
+- **Single Step SNN** reaches **≈97%**
+- **Full SNN** reaches **≈97%**
+
+All three models perform strongly on MNIST. The spiking models get very close to the ANN baseline despite using non-differentiable spike events and noisy rate encoding.
+
+### Training dynamics (loss curves)
+From the training loss vs. epoch plot:
+
+- The **ANN** and **Single Step SNN** both start with relatively low loss and converge quickly.
+- The **full SNN** starts with a much higher loss in the first epoch, then decays more slowly.
+
+This behaviour is expected.
+- The full SNN must learn over **100 time steps** with **rate-encoded spike trains**, so its gradients are weaker and noisier.
+- The ANN and Single Step SNN see a **clean, static input** and take larger effective gradient steps, so they reach low loss faster.
+
+By the final epochs, the SNN’s loss approaches the same regime as the non-spiking baselines, showing that a simple rate-encoded SNN can achieve competitive performance.
+
+### Spike-based computation (raster plot)
+The spike raster plot of the SNN’s output layer over time shows:
+
+- Spikes distributed sparsely across time, rather than continuous activations.
+- Different output neurons (digit classes) firing with different intensities over the 100 steps.
+- The neuron corresponding to the correct label tends to fire more consistently than others.
+
+This illustrates the key difference between the ANN and SNN models:  
+instead of working with continuous activations at a single time step, the SNN represents information as **spike trains over time**, which could be more energy-efficient on neuromorphic hardware compared to an ANN.
+
+### Conclusion
+
+- On MNIST, simple SNNs can get very close to ANN-level accuracy with the right training setup.
+- Adding temporal structure (100-step SNN) makes optimisation harder but allows us to study genuinely spiking behaviour.
+- The combination of all the listed data graphs provide a compact view of how ANNs and SNNs differ in both performance and dynamics.
+
+---
 ## License
 
 This project is licensed under the terms of the **MIT License**.  
