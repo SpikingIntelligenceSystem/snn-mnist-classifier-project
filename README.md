@@ -146,19 +146,12 @@ Once `requirements.txt` is complete, dependencies can be installed with:
 ```bash
 pip install -r requirements.txt
 ```
-Training scripts are currently under development.
 
 ---
 
-## Results
-```markdown
-Planned metrics to report:
+## Project Results
 
-- SNN accuracy on the MNIST test set
-- Accuracy of an ANN baseline for comparison
-- Training/validation loss and accuracy curves
-```
-### Accuracy Results
+### Model Accuracy Results
 
 | Model         | Timesteps | Epochs    | Test Accuracy | Model Type          |
 |---------------|-----------|-----------|---------------|---------------------|
