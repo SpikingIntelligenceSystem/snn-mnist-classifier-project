@@ -2,6 +2,13 @@ import json
 from pathlib import Path
 import matplotlib.pyplot as plt
 
+"""
+Running the plotting program.
+
+Run from repo root:
+    python -m result_scripts.plot_loss_curves
+"""
+
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 RESULTS_DIR = PROJECT_ROOT / "results"
 
