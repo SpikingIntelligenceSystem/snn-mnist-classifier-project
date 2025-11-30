@@ -61,8 +61,8 @@ def train_SNN(model, training_loader, device, num_epochs):
             optimizer.step()  # Optimizer updates weights
             iteration += 1  # Increases iteration count by 1 after iteration
             loss_total.append(loss_batch.item())
-            mean_loss = sum(loss_total) / len(loss_total)
             if iteration % 50 == 0:
+                mean_loss = sum(loss_total) / len(loss_total)
                 print(f"Epoch: {epoch + 1}, Iteration: {iteration}, "
                       f"Batch Loss: {loss_batch.item():.4f}, "
                       f"Mean Loss: {mean_loss:.4f}")
