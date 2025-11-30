@@ -148,10 +148,12 @@ snn-mnist-classifier-project/
 │   ├── train_snn.py              # main SNN training script
 │   ├── train_single_step_baseline.py    # single step SNN baseline training script
 │   └── train_ann_baseline.py     # ANN baseline training script
-├── plotting/
-│   ├── accuracy_bar.py    # accuracy bar chart script, compares all models
-│   ├── training_curve.py    # prints loss history for training run, single model
-│   └── spike_raster.py    # generates a spike raster plot for temporal SNN
+├── results/
+│   ├── classification_accuracy.png    # bar graph of all model accuracies compared
+│   ├── ann_train_curve.png        # graph of ann training curve after simulation
+│   ├── snn_1step_train_curve.png     # graph of single step snn training curve after simulation
+│   ├── snn_train_curve.png        # graph of snn training curve after simulation
+│   └── snn_spike_raster.png       # raster plot of spikes during simulation of temporal snn
 ├── requirements.txt          # Python dependencies
 └── README.md                 # project documentation
 ```
