@@ -113,17 +113,29 @@ For each time step `t`:
 
 From the project root:
 
+## Quickstart
+
 ```bash
-# Train and evaluate the ANN baseline
-python -m scripts.train_ANN_baseline
+# 1. Create and activate a virtual environment (optional but recommended)
+python -m venv .venv
+source .venv/bin/activate      # PowerShell: .venv\Scripts\Activate
 
-# Train and evaluate the single step SNN baseline
-python -m scripts.train_single_step_baseline
+# 2. Install dependencies
+pip install -r requirements.txt
 
-# Train and evaluate the SNN model
-python -m scripts.train_SNN
+# 3. Train models (run from repo root)
+py -m scripts.train_ANN
+py -m scripts.train_single_step_baseline
+py -m scripts.train_SNN
+
+# 4. Generate result plots
+py -m result_scripts.classification_accuracy
+py -m result_scripts.plot_loss_curves
+py -m result_scripts.spike_raster
 ```
+
 ---
+
 **Data Flowchart For Temporal SNN**
 ```mermaid
 flowchart LR
@@ -193,17 +205,25 @@ pip install -r requirements.txt
 
 
 ![classification accuracy](results/classification_accuracy.png)
+The ANN and both SNN variants all reach ~97–98% test accuracy on MNIST.  
+The time-expanded SNN slightly lags the ANN, but still matches performance closely.
+
 ---
 
 ### Training Loss Curves
 
 ![Training loss curves](results/training_loss_curves.png)
+The ANN and single-step SNN converge quickly.  
+The time-expanded SNN starts with higher loss due to random Poisson spike encoding,  
+but steadily catches up over 10 epochs.
 
 ---
 
 ### SNN Model Spike Raster
 
 ![SNN Spike Raster](results/snn_output_spikes.png)
+Spike raster for the 10 output neurons over 100 time steps for a correctly classified sample.  
+Only a subset of neurons fire consistently, reflecting the predicted digit class.
 
 ---
 
@@ -251,7 +271,33 @@ instead of working with continuous activations at a single time step, the SNN re
 - Adding temporal structure (100-step SNN) makes optimisation harder but allows us to study genuinely spiking behaviour.
 - The combination of all the listed data graphs provide a compact view of how ANNs and SNNs differ in both performance and dynamics.
 
+## Personal Growths
+
+- How to implement LIF-based SNNs in PyTorch using snnTorch
+- How to encode static images as spike trains with rate encoding
+- How to structure a small ML project (separate models, training scripts, and result scripts)
+- How to use Git/GitHub and VS Code’s terminals to manage experiments and results
+
+## Project Limitations
+
+- Only evaluated on MNIST (simple, low-resolution digits)
+- No hyperparameter search – learning rates and beta were chosen manually
+- No energy / latency comparison between ANN and SNNs yet
+
+## Potential Changes For The Future
+
+- Try different encodings (latency coding, population coding)
+- Compare convolutional ANN vs convolutional SNN on MNIST or Fashion-MNIST
+- Log firing rates and investigate sparsity for potential energy savings
+
 ---
+## References
+
+- snnTorch tutorials – [(https://snntorch.readthedocs.io/en/latest/tutorials/index.html)]
+- PyTorch documentation – [(https://docs.pytorch.org/tutorials/)]
+
+---
+
 ## License
 
 This project is licensed under the terms of the **MIT License**.  
