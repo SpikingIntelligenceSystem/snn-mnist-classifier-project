@@ -143,12 +143,6 @@ flowchart LR
 
 ---
 
-## Status
-
-**Comparing models.** 
-
----
-
 ## Repository Structure
 
 Planned structure for this project (subject to change):
