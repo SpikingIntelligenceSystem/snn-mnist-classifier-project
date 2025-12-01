@@ -29,7 +29,7 @@ Run from repo root:
 
 batch_size = 128
 num_epochs = 10
-learn_rate = 1e-3
+learn_rate = 1e-4
 # Set training parameters
 
 device = torch.device(
