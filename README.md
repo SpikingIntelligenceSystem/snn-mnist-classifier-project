@@ -227,8 +227,8 @@ The time-expanded SNN slightly lags the ANN, but still matches performance close
 ### Training Loss Curves
 
 ![Training loss curves](results/training_loss_curves.png)
-The ANN and single-step SNN converge quickly.  
-The time-expanded SNN starts with higher loss due to random Poisson spike encoding and a slightly different learning rate,  
+The ANN converges quickly.  
+The time-expanded SNN and single step SNN starts with higher loss due to random spike encoding,  
 but steadily catches up over 10 epochs.
 
 ---
@@ -260,14 +260,15 @@ All three models perform strongly on MNIST. The spiking models get very close to
 ### Training dynamics (loss curves)
 From the training loss vs. epoch plot:
 
-- The **ANN** and **Single Step SNN** both start with relatively low loss and converge quickly.
-- The **full SNN** starts with a much higher loss in the first epoch, then decays more slowly.
+- The **ANN** starts with a much lower loss and converges the fastest.
+- The **single-step SNN** actually starts with the **highest** loss in epoch 1, but its loss drops sharply over the first few epochs and then tracks just above the ANN curve.
+- The **full SNN** also starts with a relatively high loss and decays more slowly than the ANN, staying a bit above the single-step SNN for most of training.
 
-This behaviour is expected.
-- The full SNN must learn over **100 time steps** with **rate-encoded spike trains**, so its gradients are weaker and noisier.
-- The ANN and Single Step SNN see a **clean, static input** and take larger effective gradient steps, so they reach low loss faster.
+This behaviour is expected:
 
-By the final epochs, the SNN’s loss approaches the same regime as the non-spiking baselines, showing that a simple rate-encoded SNN can achieve competitive performance.
+- Both spiking models use LIF neurons and discrete spikes instead of smooth ReLU activations, which makes optimisation noisier and gradients less direct than in the ANN.
+- The full SNN additionally has to propagate credit through **100 time steps** of rate-encoded spike trains, so its effective gradients are weaker and it takes longer to reach the same loss regime.
+- Despite these differences in training dynamics, by the final epochs all three models end up in a similar low-loss region, which lines up with their very close test accuracies.
 
 ### Spike-based computation (raster plot)
 The spike raster plot of the SNN’s output layer over time shows:
