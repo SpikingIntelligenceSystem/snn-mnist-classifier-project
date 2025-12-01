@@ -6,6 +6,12 @@ I will also include a single step SNN as another baseline comparison that has re
 
 This project is part of my self-study in **neuromorphic computing, spiking neural networks, and machine learning**.
 
+**TL;DR**
+
+- Train a ReLU ANN and two SNN variants (single-step + temporal) on MNIST  
+- Compare accuracy, training loss, and output spike patterns  
+- Built with PyTorch + snnTorch as a self-study project in neuromorphic computing
+
 ---
 
 ## Project Goals
@@ -103,7 +109,7 @@ For each time step `t`:
 **Training setup**
 
 - Time steps: num_steps = 100
-- Optimizer: Adam (lr = 1e-4)
+- Optimizer: Adam (lr = 1e-3) (lr = 1e-4 for temporal SNN)
 - Batch size: 128
 - Epochs: 5-10 (10 used for the accuracy comparison results)
 
@@ -141,6 +147,17 @@ py -m result_scripts.classification_accuracy
 py -m result_scripts.plot_loss_curves
 py -m result_scripts.SNN_spike_raster
 ```
+---
+
+### Training Settings
+
+| Parameter        | ANN         | 1-step SNN  | Temporal SNN |
+|------------------|-------------|-------------|-------------|
+| Batch size       | 128         | 128         | 128         |
+| Epochs           | 10          | 10          | 10          |
+| Learning rate    | 1e-3        | 1e-4        | 1e-4        |
+| Time steps (T)   | 1           | 1           | 100         |
+| Seed             | 0 (torch, NumPy, `random`) | same | same |
 
 ---
 
@@ -211,7 +228,7 @@ The time-expanded SNN slightly lags the ANN, but still matches performance close
 
 ![Training loss curves](results/training_loss_curves.png)
 The ANN and single-step SNN converge quickly.  
-The time-expanded SNN starts with higher loss due to random Poisson spike encoding,  
+The time-expanded SNN starts with higher loss due to random Poisson spike encoding and a slightly different learning rate,  
 but steadily catches up over 10 epochs.
 
 ---
@@ -268,12 +285,12 @@ instead of working with continuous activations at a single time step, the SNN re
 - Adding temporal structure (100-step SNN) makes optimisation harder but allows us to study genuinely spiking behaviour.
 - The combination of all the listed data graphs provide a compact view of how ANNs and SNNs differ in both performance and dynamics.
 
-## Personal Growth
+## What I Learned
 
 - How to implement LIF-based SNNs in PyTorch using snnTorch
 - How to encode static images as spike trains with rate encoding
-- How to structure a small ML project (separate models, training scripts, and result scripts)
-- How to use Git/GitHub and VS Code’s terminals to manage experiments and results
+- How to structure a small ML project with separate model, training, and result scripts 
+- How to use Git/GitHub and VS Code’s terminals to manage experiments and artifacts
 
 ## Project Limitations
 
@@ -290,8 +307,8 @@ instead of working with continuous activations at a single time step, the SNN re
 ---
 ## References
 
-- snnTorch tutorials – [https://snntorch.readthedocs.io/en/latest/tutorials/index.html]
-- PyTorch documentation – [https://docs.pytorch.org/tutorials/]
+- snnTorch tutorials – [snnTorch tutorials](https://snntorch.readthedocs.io/en/latest/tutorials/index.html)
+- PyTorch documentation – [PyTorch tutorials](https://docs.pytorch.org/tutorials/)
 
 ---
 
